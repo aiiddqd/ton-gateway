@@ -6,6 +6,7 @@ use WC_Payment_Gateway;
 use TelePay\TelePayEnvironment;
 use TelePay\TelePayClient;
 use TelePay\TelePayInvoiceInput;
+use TelePay\TelePayAssetInput;
 
 add_action('init', function () {
 
@@ -15,6 +16,13 @@ add_action('init', function () {
         public $testmode;
         public $secret_key;
         public $public_key;
+
+        /**
+         * TelePayClient.
+         *
+         * @var TelePayClient
+         */
+        public $telepay;
 
         public function __construct()
         {
@@ -48,6 +56,8 @@ add_action('init', function () {
                 require_once(__DIR__ . '/Telepay/vendor/autoload.php');
             }
             add_action('woocommerce_receipt_' . $this->id, array(&$this, 'display_form'));
+            $environment = new TelePayEnvironment($this->secret_key);
+            $this->telepay = new TelePayClient($environment);
 
             // We need custom JavaScript to obtain a token
             // add_action('wp_enqueue_scripts', array($this, 'payment_scripts'));
@@ -60,16 +70,29 @@ add_action('init', function () {
         function display_form($order_id)
         {
             $order = wc_get_order($order_id);
-
             $data = $order->get_meta('ton_invoice');
-            dd($order->get_total());
-
             $link = sprintf('<a href="%1$s">%1$s</a>', $data['checkout_url']);
             printf('<p>Payment by link: %s</p>', $link);
-
             printf('<p>Amount: %s</p>', $data['amount']);
             printf('<p>TON URL: %s</p>', $data['onchain_url']);
+        }
 
+        function get_ton_amount_for_current_currency($amount)
+        {
+            $ton_price_in_usd = $this->get_ton_usd_price();
+            $usd_price = $this->get_option('currency_price_for_usd');
+            return strval(round($amount * $usd_price / $ton_price_in_usd, 3));
+        }
+
+        function get_ton_usd_price()
+        {
+            $items = $this->telepay->getAssets()['assets'] ?? [];
+            foreach ($items as $asset) {
+                if ($asset['asset'] == 'TON') {
+                    return $asset['usd_price'];
+                }
+            }
+            return null;
         }
 
         public function init_form_fields()
@@ -86,6 +109,13 @@ add_action('init', function () {
                     'type' => 'text',
                     'description' => 'This controls the title which the user sees during checkout.',
                     'default' => 'Pay by TON (Toncoin)',
+                    'desc_tip' => true,
+                ),
+                'currency_price_for_usd' => array(
+                    'title' => 'USD Price',
+                    'type' => 'text',
+                    'description' => '',
+                    'default' => '',
                     'desc_tip' => true,
                 ),
                 'description' => array(
@@ -120,8 +150,7 @@ add_action('init', function () {
         {
             $order = wc_get_order($order_id);
 
-            //todo - add currency rate converter
-            $amount = $order->get_total();
+            $amount = $this->get_ton_amount_for_current_currency($order->get_total());
             $type_net = $this->testmode ? 'testnet' : 'mainnet';
 
             $environment = new TelePayEnvironment($this->secret_key);
