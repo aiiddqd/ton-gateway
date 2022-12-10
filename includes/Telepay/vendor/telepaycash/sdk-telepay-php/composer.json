@@ -1,0 +1,34 @@
+{
+    "name": "telepaycash/sdk-telepay-php",
+    "description": "Library to receive payments with TelePay",
+    "keywords": ["telepay", "payments", "rest", "sdk", "toncoin"],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TelePay\\": "src/",
+            "Examples\\":"examples/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\":"tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    },
+    "authors": [
+        {
+            "name": "Raubel",
+            "email": "raubel1993@gmail.com"
+        }
+    ],
+    "scripts": {
+        "tests": "./vendor/bin/phpunit",
+        "tests-coverage": "./vendor/bin/phpunit --coverage-html coverage"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
+}

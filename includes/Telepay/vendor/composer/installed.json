@@ -1,0 +1,56 @@
+{
+    "packages": [
+        {
+            "name": "telepaycash/sdk-telepay-php",
+            "version": "v1.1.0",
+            "version_normalized": "1.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TelePay-cash/telepay-php.git",
+                "reference": "cc4925b372346d03c5f7bab90d576cc2b7b17ca0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TelePay-cash/telepay-php/zipball/cc4925b372346d03c5f7bab90d576cc2b7b17ca0",
+                "reference": "cc4925b372346d03c5f7bab90d576cc2b7b17ca0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "time": "2022-06-27T14:54:46+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "TelePay\\": "src/",
+                    "Examples\\": "examples/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raubel",
+                    "email": "raubel1993@gmail.com"
+                }
+            ],
+            "description": "Library to receive payments with TelePay",
+            "keywords": [
+                "payments",
+                "rest",
+                "sdk",
+                "telepay",
+                "toncoin"
+            ],
+            "install-path": "../telepaycash/sdk-telepay-php"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

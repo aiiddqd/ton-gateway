@@ -1,0 +1,5 @@
+{
+    "require": {
+        "telepaycash/sdk-telepay-php": "^1.1"
+    }
+}
