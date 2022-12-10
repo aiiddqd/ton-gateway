@@ -16,4 +16,5 @@ Payments via blockchain TON (The Open Network, Toncoin) for WordPress & WooComme
 - https://wordpress.org/
 - https://woocommerce.com/
 - https://telepay.cash/
-- telepay php https://github.com/TelePay-cash/telepay-php 
+    - telepay php https://github.com/TelePay-cash/telepay-php 
+    - rest api https://telepay.readme.io/reference/welcome
