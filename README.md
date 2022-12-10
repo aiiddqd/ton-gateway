@@ -8,7 +8,7 @@ Payments via blockchain TON (The Open Network, Toncoin) for WordPress & WooComme
 - get keys
 
 # todo
-- [ ] crypto currency rate
+- [ ] move options from Gateway to Settings API
 - [ ] web hook for auto complete order
 
 

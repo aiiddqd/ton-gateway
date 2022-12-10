@@ -30,7 +30,7 @@ add_action('init', function () {
             $this->icon = plugins_url('Telepay/icon.png', __FILE__);
             // $this->has_fields = true; // in case you need a custom credit card form
             $this->method_title = 'Telepay';
-            $this->method_description = 'Payments via TON (Toncoin, The Open Network)'; // will be displayed on the options page
+            $this->method_description = 'Payment via TON (Toncoin, The Open Network)'; // will be displayed on the options page
 
             // gateways can support subscriptions, refunds, saved payment methods,
             // but we begin with simple payments
