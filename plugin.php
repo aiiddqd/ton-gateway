@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       TON Gateway
+ * Plugin Name:       @ TON Gateway
  * Description:       Toncoin payments via The Open Network blockchain for WordPress & WooCommerce
  * Plugin URI:        https://github.com/uptimizt/ton-gateway
  * Author:            uptimizt
@@ -9,7 +9,7 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       ton-gateway
  * Domain Path:       /languages
- * Version:           0.1
+ * Version:           0.2
  */
 
 namespace TonGateway;
